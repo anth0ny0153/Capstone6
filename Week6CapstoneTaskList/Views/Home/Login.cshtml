@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+@* LOG IN *@
+<form action="/Home/LoginToAccount" method="post">
+    Email: <input type="email" name="email" /><br />
+    Password: <input type="password" name="password" /><br />
+    <input type="submit" value="Login" />
+</form>
+@* account creation*@
+<h4><a href="/Home/SignUpForm/">Don't have an account? Click here to sign up now!</a></h4>
+

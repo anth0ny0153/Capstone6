@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Task";
+}
+
+<h2>Task Manager</h2>
+
+<form action="/Home/NewTask" method="post">
+    User ID <input type="text" name="email" /><br /><br />
+    Task Description <input type="text" name="taskDescription" /><br /><br />
+    Due Date <input type="date" name="dueDate" /><br /><br />
+    <input type="submit" value="ADD TASK" />
+    </form>
