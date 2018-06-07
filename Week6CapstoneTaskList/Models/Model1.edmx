@@ -7,12 +7,13 @@
     <Schema Namespace="TaskListDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Task">
           <Key>
-            <PropertyRef Name="taskNumber" />
+            <PropertyRef Name="taskName" />
           </Key>
-          <Property Name="taskDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="taskDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="dueDate" Type="date" Nullable="false" />
-          <Property Name="taskStatus" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="taskNumber" Type="bigint" Nullable="false" />
+          <Property Name="taskStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="taskName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -35,12 +36,13 @@
         </EntityContainer>
         <EntityType Name="Task">
           <Key>
-            <PropertyRef Name="taskNumber" />
+            <PropertyRef Name="taskName" />
           </Key>
-          <Property Name="taskDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="taskDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="dueDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="taskStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="taskNumber" Type="Int64" Nullable="false" />
+          <Property Name="taskStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taskName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -58,7 +60,8 @@
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="TaskListDBModel.Task">
               <MappingFragment StoreEntitySet="Task">
-                <ScalarProperty Name="taskNumber" ColumnName="taskNumber" />
+                <ScalarProperty Name="taskName" ColumnName="taskName" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="taskStatus" ColumnName="taskStatus" />
                 <ScalarProperty Name="dueDate" ColumnName="dueDate" />
                 <ScalarProperty Name="taskDescription" ColumnName="taskDescription" />

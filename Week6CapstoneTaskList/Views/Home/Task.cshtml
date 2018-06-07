@@ -3,11 +3,13 @@
     ViewBag.Title = "Task";
 }
 
-<h2>Task Manager</h2>
+<h2>ADD TASK</h2>
 
-<form action="/Home/NewTask" method="post">
-    User ID <input type="text" name="email" /><br /><br />
-    Task Description <input type="text" name="taskDescription" /><br /><br />
-    Due Date <input type="date" name="dueDate" /><br /><br />
+<form action="/Home/AddNewTask" method="post">
+    User email <input type="email" name="email" /><br />
+    Task Name <input type="text" name="taskName" /><br />
+    Task Description <input type="text" name="taskDescription" /><br />
+    Status <input type="text" name="taskStatus" value="Incomplete" /><br />
+    Due Date <input type="date" name="dueDate" /><br />
     <input type="submit" value="ADD TASK" />
     </form>

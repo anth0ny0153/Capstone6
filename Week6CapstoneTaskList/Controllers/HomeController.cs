@@ -78,25 +78,66 @@ namespace Week6CapstoneTaskList.Controllers
         public ActionResult AddNewTask(Task newTask)
         {
             TaskListDBEntities ORM = new TaskListDBEntities();
-            if (ORM.Tasks.ToList().Count == 0)
+                ORM.Tasks.Add(newTask);
+                ORM.SaveChanges();
+                return RedirectToAction("TaskList");
+        }
+        public ActionResult DeleteTask(string taskName)
+        {
+            //1. ORM 
+
+            TaskListDBEntities ORM = new TaskListDBEntities();
+
+            //2. Find the customer you want to delete 
+            Task Found = ORM.Tasks.Find(taskName);
+
+
+
+            if (Found != null)
             {
-                newTask.taskNumber = 1;
+                ORM.Tasks.Remove(Found);
+
+                ORM.SaveChanges();
+
+                return RedirectToAction("TaskList");
+
             }
             else
             {
-                newTask.taskNumber = ((ORM.Tasks.ToList().Last().taskNumber) + 1);
+                ViewBag.ErrorMessage = "Task not found!";
+                return View("Error");
+
             }
-            ORM.Tasks.Add(newTask);
-            ORM.SaveChanges();
-            return RedirectToAction("Welcome");
-        }
-        public ActionResult DeleteTask()
-        {
-            return View();
         }
         public ActionResult TaskList()
         {
+            TaskListDBEntities ORM = new TaskListDBEntities();
+            ViewBag.TaskList = ORM.Tasks.ToList();
             return View();
+
+        }
+        public ActionResult ChangeStatus(string taskName)
+        {
+            TaskListDBEntities ORM = new TaskListDBEntities();
+            Task Found = ORM.Tasks.Find(taskName);
+            if(Found != null)
+            {
+                if(Found.taskStatus == "Incomplete")
+                {
+                    Found.taskStatus = "Complete";
+                }
+                else
+                {
+                    Found.taskStatus = "Incomplete";
+                }
+                ORM.Entry(Found).State = System.Data.Entity.EntityState.Modified;
+                ORM.SaveChanges();
+                return RedirectToAction("TaskList");
+            }
+            else
+            {
+                return View("Error");
+            }
         }
     }
 }

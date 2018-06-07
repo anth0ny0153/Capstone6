@@ -17,6 +17,7 @@ namespace Week6CapstoneTaskList.Models
         public string taskDescription { get; set; }
         public System.DateTime dueDate { get; set; }
         public string taskStatus { get; set; }
-        public long taskNumber { get; set; }
+        public string email { get; set; }
+        public string taskName { get; set; }
     }
 }
