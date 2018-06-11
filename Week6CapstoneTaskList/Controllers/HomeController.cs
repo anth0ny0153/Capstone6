@@ -139,5 +139,14 @@ namespace Week6CapstoneTaskList.Controllers
                 return View("Error");
             }
         }
+        public JsonResult SearchByName(string taskName)
+        {
+            //orm
+            TaskListDBEntities ORM = new TaskListDBEntities();
+            //search by country
+            List<Task> Result = ORM.Tasks.Where(c => c.taskName.Contains(taskName)).ToList();
+            //return data as json
+            return Json(Result);
+        }
     }
 }
